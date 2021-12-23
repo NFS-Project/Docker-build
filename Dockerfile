@@ -41,9 +41,9 @@ RUN echo Asia/Jakarta > /etc/timezone
 RUN apt install sudo git -yqq
 RUN git config --global user.name NFS86
 RUN git config --global user.email jarbull86@gmail.com
-RUN mkdir /etc/circleconfig/picard-dispatcher
-RUN vim /etc/circleconfig/picard-dispatcher/resource-definitions.edn
-RUN echo 'export CIRCLE_DISPATCHER_RESOURCE_DEF=/circleconfig/picard-dispatcher/resource-definitions.edn' | tee /etc/circleconfig/picard-dispatcher/customizations
+RUN sudo mkdir /etc/circleconfig/picard-dispatcher
+RUN sudo vim /etc/circleconfig/picard-dispatcher/resource-definitions.edn
+RUN echo 'export CIRCLE_DISPATCHER_RESOURCE_DEF=/circleconfig/picard-dispatcher/resource-definitions.edn' | sudo tee /etc/circleconfig/picard-dispatcher/customizations
 RUN git clone https://github.com/akhilnarang/scripts /tmp/scripts
 WORKDIR /tmp/scripts
 RUN bash setup/android_build_env.sh
