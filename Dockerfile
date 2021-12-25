@@ -7,11 +7,18 @@ ENV LANG=C.UTF-8
 ENV JAVA_OPTS=" -Xmx7G "
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV USE_CCACHE=1
+ENV KERNEL_USE_CCACHE=1
 ENV ALLOW_MISSING_DEPENDENCIES=true
+ENV KBUILD_BUILD_USER=finix
+ENV KBUILD_BUILD_HOST=rosy
+ENV BUILD_USER=finix
+ENV BUILD_HOST=rosy
 ENV BUILD_USERNAME=finix
 ENV BUILD_HOSTNAME=rosy
 ENV TZ=Asia/Jakarta
 ENV HOME=/root
+ENV PWD=/tmp
+ENV pwd=/tmp
 WORKDIR /tmp
 
 RUN apt-get -yqq update
@@ -39,4 +46,4 @@ RUN rm -rf /tmp/anu
 RUN rm -rf /tmp/scripts
 RUN for t in gcc g++ cc c++ clang clang++; do ln -vs /usr/bin/ccache /usr/local/bin/$t; done
 
-VOLUME ["/tmp/rom", "/tmp/ccache"]
+VOLUME ["/tmp/rom", "/tmp/rom/ccache"]
