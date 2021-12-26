@@ -9,6 +9,8 @@ ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV CCACHE_DIR=/tmp/ccache
 ENV USE_CCACHE=1
 ENV KERNEL_USE_CCACHE=1
+ENV CIRRUS_CLONE_DEPTH=1
+ENV CIRRUS_WORKING_DIR=/tmp
 ENV ALLOW_MISSING_DEPENDENCIES=true
 ENV KBUILD_BUILD_USER=finix
 ENV KBUILD_BUILD_HOST=rosy
@@ -44,8 +46,7 @@ WORKDIR /tmp/anu
 RUN bash setup.sh
 WORKDIR /tmp
 RUN rm -rf /var/lib/apt/lists/*
-RUN rm -rf /tmp/anu
-RUN rm -rf /tmp/scripts
+RUN rm -rf /tmp/*
 RUN for t in gcc g++ cc c++ clang clang++; do ln -vs /usr/bin/ccache /usr/local/bin/$t; done
 
 VOLUME ["/tmp/rom", "/tmp/ccache"]
