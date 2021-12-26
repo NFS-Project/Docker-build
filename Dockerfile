@@ -33,6 +33,7 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 RUN echo Asia/Jakarta > /etc/timezone
 RUN apt install sudo git -yqq
 RUN python3 -m pip  install networkx
+RUN ln -sf /usr/bin/python3 /usr/bin/python
 RUN git config --global user.name NFS86
 RUN git config --global user.email jarbull86@gmail.com
 RUN git clone https://github.com/akhilnarang/scripts /tmp/scripts
