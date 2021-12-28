@@ -50,30 +50,5 @@ WORKDIR /tmp
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /tmp/*
 RUN for t in gcc g++ cc c++ clang clang++; do ln -vs /usr/bin/ccache /usr/local/bin/$t; done
-RUN for p in gcc g++ cc c++; do ln -vs /usr/bin/ccache /usr/local/bin/$p;  done
-
-RUN --mount=type=cache,target=/ccache/ docker-php-source extract && \
-    docker-php-ext-install \
-    intl \
-    bcmath  \
-    calendar \
-    exif \
-    gd \
-    gettext \
-    mysqli \
-    opcache \
-    pcntl \
-    pdo_mysql \
-    shmop \
-    soap \
-    sockets \
-    sysvmsg \
-    sysvsem \
-    sysvshm \
-    xsl \
-    zip \
-  && \
-  docker-php-source delete
-RUN --mount=type=cache,target=/ccache/ ccache -s
 
 VOLUME ["/tmp/rom", "/tmp/ccache"]
