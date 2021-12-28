@@ -75,6 +75,5 @@ RUN --mount=type=cache,target=/ccache/ docker-php-source extract && \
   && \
   docker-php-source delete
 RUN --mount=type=cache,target=/ccache/ ccache -s
-S
 
 VOLUME ["/tmp/rom", "/tmp/ccache"]
