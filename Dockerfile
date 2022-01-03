@@ -51,5 +51,7 @@ WORKDIR /tmp
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /tmp/*
 RUN for t in gcc g++ cc c++ clang clang++; do ln -vs /usr/bin/ccache /usr/local/bin/$t; done
+RUN rm -rf /var/lib/dpkg/info/*.postinst
+RUN dpkg --configure -a
 
 VOLUME ["/tmp/rom", "/tmp/ccache"]
