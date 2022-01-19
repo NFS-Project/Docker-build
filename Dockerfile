@@ -19,10 +19,10 @@ RUN git config --global user.name NFS86
 RUN git config --global user.email jarbull86@gmail.com
 RUN git clone https://github.com/akhilnarang/scripts
 RUN bash scripts/setup/android_build_env.sh
+RUN bash scripts/setup/ccache.sh
 RUN git clone https://github.com/I-n-o-k/android_tools anu
 RUN bash anu/setup.sh
 RUN rm -rf /var/lib/apt/lists/*
-RUN rm -rf *
 RUN for t in gcc g++ cc c++ clang clang++; do ln -vs /usr/bin/ccache /usr/local/bin/$t; done
 RUN rm -rf /var/lib/dpkg/info/*.postinst
 RUN dpkg --configure -a
