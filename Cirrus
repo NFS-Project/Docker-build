@@ -3,6 +3,10 @@ FROM ubuntu:21.10
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV LANGUAGE=en_GB.UTF-8
+ENV LANG=en_GB.UTF-8
+ENV LC_ALL=en_GB.UTF-8
+ENV JAVA_OPTS=" -Xmx7G "
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV CCACHE_DIR=/tmp/ccache
 ENV USE_CCACHE=1
