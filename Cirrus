@@ -50,7 +50,6 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip \
 
 RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && dpkg --configure -a \
-    && rm -rf /tmp/cirrus-ci-build/* \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp/cirrus-ci-build
