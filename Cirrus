@@ -19,6 +19,11 @@ RUN apt-get -yqq update \
 RUN git config --global user.name NFS86 \
     && git config --global user.email jarbull86@gmail.com
 
+RUN sudo /usr/sbin/update-ccache-symlinks \
+    && echo export PATH="/usr/lib/ccache:$PATH" | tee -a ~/.bashrc \
+    && source ~/.bashrc && echo $PATH \
+    && which ccache gcc g++ cc c++ clang clang++
+
 RUN apt-get install tzdata \
     && apt-mark hold tzdata \
     && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
