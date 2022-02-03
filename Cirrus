@@ -4,7 +4,7 @@ LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG=C.UTF-8
 ENV JAVA_OPTS=" -Xmx7G "
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 WORKDIR /tmp/cirrus-ci-build
     
 RUN apt-get -yqq update \
@@ -19,8 +19,9 @@ RUN apt-get -yqq update \
 RUN git config --global user.name NFS86 \
     && git config --global user.email jarbull86@gmail.com
 
-RUN sudo /usr/sbin/update-ccache-symlinks \
-    && echo export PATH="/usr/lib/ccache:$PATH" | tee -a ~/.bashrc \
+RUN /usr/sbin/update-ccache-symlinks \
+    && dpkg -l ccache \
+    && echo export PATH="/usr/lib/ccache:$PATH" \
     && source ~/.bashrc && echo $PATH \
     && which ccache gcc g++ cc c++ clang clang++
 
