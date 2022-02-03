@@ -27,16 +27,16 @@ RUN apt-get install tzdata \
 RUN python3 -m pip  install networkx \
     && ln -sf /usr/bin/python3 /usr/bin/python
 
-RUN git clone https://github.com/mirror/make \
-    && cd make && ./bootstrap && ./configure && make CFLAGS="-O3" \
+RUN git clone https://github.com/mirror/make $WORKDIR/make \
+    && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" \
     && sudo install ./make /usr/bin/make
 
-RUN git clone https://github.com/ninja-build/ninja.git \
-    && cd ninja && git reset --hard 8fa4d05 && ./configure.py --bootstrap \
+RUN git clone https://github.com/ninja-build/ninja.git $WORKDIR/ninja \
+    && cd $WORKDIR/ninja && git reset --hard 8fa4d05 && ./configure.py --bootstrap \
     && sudo install ./ninja /usr/bin/ninja
 
-RUN git clone https://github.com/google/kati.git \
-    && cd kati && git reset --hard e1d6ee2 && make ckati \
+RUN git clone https://github.com/google/kati.git $WORKDIR/kati \
+    && cd $WORKDIR/kati && git reset --hard e1d6ee2 && make ckati \
     && sudo install ./ckati /usr/bin/ckati
 
 RUN axel -a -n 10 https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz \
