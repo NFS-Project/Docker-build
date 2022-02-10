@@ -53,6 +53,9 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip \
     && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone \
     && sudo chmod 755 /usr/bin/rclone
 
+RUN chmod +x llvm.sh \
+    && ./llvm.sh
+
 RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && dpkg --configure -a \
     && rm -rf /var/lib/apt/lists/*
