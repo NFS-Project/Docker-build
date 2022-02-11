@@ -32,6 +32,12 @@ RUN apt-get install tzdata \
 RUN python3 -m pip  install networkx \
     && ln -sf /usr/bin/python3 /usr/bin/python
 
+RUN git clone https://github.com/akhilnarang/scripts $WORKDIR/scripts \
+    && cd $WORKDIR/scripts && bash /setup/android_build_env.sh
+
+RUN git clone https://github.com/I-n-o-k/android_tools $WORKDIR/android_tools \
+    && cd $WORKDIR/android_tools && bash setup.sh
+
 RUN git clone https://github.com/mirror/make $WORKDIR/make \
     && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" \
     && sudo install ./make /usr/bin/make
@@ -56,12 +62,6 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip \
 RUN wget https://raw.githubusercontent.com/NFS86/Docker-build/docker/llvm.sh \
     && chmod +x llvm.sh \
     && ./llvm.sh
-
-RUN git clone https://github.com/akhilnarang/scripts $WORKDIR/scripts \
-    && cd $WORKDIR/scripts && ./setup/android_build_env.sh
-
-RUN git clone https://github.com/I-n-o-k/android_tools $WORKDIR/android_tools \
-    && cd $WORKDIR/android_tools && ./setup.sh
 
 RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && dpkg --configure -a \
