@@ -58,9 +58,10 @@ RUN wget https://raw.githubusercontent.com/NFS86/Docker-build/docker/llvm.sh \
     && ./llvm.sh
 
 RUN git clone https://github.com/akhilnarang/scripts $WORKDIR/scripts \
-    && bash $WORKDIR/scripts/setup/android_build_env.sh \
-    && git clone https://github.com/I-n-o-k/android_tools $WORKDIR/android_tools \
-    && bash $WORKDIR/android_tools/setup.sh
+    && cd $WORKDIR/scripts && ./setup/android_build_env.sh
+
+RUN git clone https://github.com/I-n-o-k/android_tools $WORKDIR/android_tools \
+    && cd $WORKDIR/android_tools && ./setup.sh
 
 RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && dpkg --configure -a \
