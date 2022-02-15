@@ -5,7 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LANG=C.UTF-8
 ENV LC_ALL=C
 ENV USE_CCACHE=1
-ENV JAVA_OPTS=" -Xmx7G "
+ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx32G"
+ENV JAVA_OPTS=" -Xmx32G "
 ENV USER=cirrus
 ENV CCACHE_EXEC=/usr/bin/ccache
 ENV HOSTNAME=cirrus-ci.org
