@@ -4,9 +4,10 @@ LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG=C.UTF-8
 ENV LC_ALL=C
+ENV CIRRUS_CPU=24
 ENV USE_CCACHE=1
-ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx32G"
-ENV JAVA_OPTS=" -Xmx32G "
+ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
+ENV JAVA_OPTS=" -Xmx120G "
 ENV USER=cirrus
 ENV CCACHE_EXEC=/usr/bin/ccache
 ENV HOSTNAME=cirrus-ci.org
