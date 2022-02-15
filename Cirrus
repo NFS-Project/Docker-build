@@ -12,6 +12,7 @@ ENV USER=cirrus
 ENV CCACHE_EXEC=/usr/bin/ccache
 ENV HOSTNAME=cirrus-ci.org
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV only_if=$CIRRUS_REPO_OWNER == 'NFS86'
 WORKDIR /tmp/cirrus-ci-build
     
 RUN apt-get -yqq update \
