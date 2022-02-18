@@ -35,10 +35,10 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           context: ./
-          file: ./Cirrus
+          file: ./21.10
           run: echo ${{ secrets.RCLONE }} > ~/.config/rclone/rclone.conf
           push: true
-          tags: anggit86/docker:cirrus
+          tags: anggit86/ubuntu:21.10
 
 
       - name: Image digest
