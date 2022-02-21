@@ -51,7 +51,7 @@ RUN wget https://storage.googleapis.com/downloads.webmproject.org/releases/webp/
     && make -j$(nproc --all)
 
 RUN git clone https://github.com/ninja-build/ninja.git $WORKDIR/ninja \
-    && cd $WORKDIR/ninja && git reset --hard 8fa4d05 && ./configure.py --bootstrap \
+    && cd $WORKDIR/ninja && ./configure.py --bootstrap \
     && sudo install ./ninja /usr/bin/ninja
 
 RUN git clone https://github.com/google/kati.git $WORKDIR/kati \
