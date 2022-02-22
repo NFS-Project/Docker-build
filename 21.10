@@ -9,9 +9,9 @@ ENV CIRRUS_REPO_OWNER=NFS86
 ENV USE_CCACHE=1
 ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
 ENV JAVA_OPTS=" -Xmx120G "
-ENV USER=cirrus
+ENV USER=rosy
 ENV CCACHE_EXEC=/usr/bin/ccache
-ENV HOSTNAME=cirrus-ci.org
+ENV HOSTNAME=builder
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 WORKDIR /tmp
 
