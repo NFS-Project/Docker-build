@@ -35,10 +35,10 @@ RUN apt-get install tzdata \
 RUN python3 -m pip  install networkx \
     && ln -sf /usr/bin/python3 /usr/bin/python
 
-RUN git clone https://github.com/akhilnarang/scripts \
+RUN git clone --depth 1 https://github.com/akhilnarang/scripts \
      && bash scripts/setup/android_build_env.sh
 
-RUN git clone https://github.com/mirror/make $WORKDIR/make \
+RUN git clone --depth 1 https://github.com/mirror/make $WORKDIR/make \
     && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" \
     && sudo install ./make /usr/bin/make
 
@@ -50,11 +50,11 @@ RUN wget https://storage.googleapis.com/downloads.webmproject.org/releases/webp/
     && ./configure \
     && make -j$(nproc --all)
 
-RUN git clone https://github.com/ninja-build/ninja.git $WORKDIR/ninja \
+RUN git clone --depth 1 https://github.com/ninja-build/ninja.git $WORKDIR/ninja \
     && cd $WORKDIR/ninja && ./configure.py --bootstrap \
     && sudo install ./ninja /usr/bin/ninja
 
-RUN git clone https://github.com/google/kati.git $WORKDIR/kati \
+RUN git clone --depth 1 https://github.com/google/kati.git $WORKDIR/kati \
     && cd $WORKDIR/kati && git reset --hard e1d6ee2 && make ckati \
     && sudo install ./ckati /usr/bin/ckati
 
@@ -66,6 +66,13 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip \
     && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 \
     && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone \
     && sudo chmod 755 /usr/bin/rclone
+
+RUN git clone --depth 1 https://github.com/TheLartians/Ccache.cmake $WORKDIR/Ccache.cmake \
+    && cd $WORKDIR/Ccache.cmake \
+    && cmake -Htest -Bbuild -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" \
+    && cmake --build build \
+    && cmake -Htest -Bbuildx -GNinja -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" \
+    && cmake --build buildx
 
 RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && dpkg --configure -a \
