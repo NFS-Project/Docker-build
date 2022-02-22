@@ -55,7 +55,7 @@ RUN git clone --depth 1 https://github.com/ninja-build/ninja.git $WORKDIR/ninja 
     && sudo install ./ninja /usr/bin/ninja
 
 RUN git clone --depth 1 https://github.com/google/kati.git $WORKDIR/kati \
-    && cd $WORKDIR/kati && git reset --hard e1d6ee2 && make ckati \
+    && cd $WORKDIR/kati && make ckati \
     && sudo install ./ckati /usr/bin/ckati
 
 RUN axel -a -n 10 https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz \
