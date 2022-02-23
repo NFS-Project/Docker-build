@@ -35,8 +35,8 @@ RUN apt-get install tzdata \
 RUN python3 -m pip  install networkx \
     && ln -sf /usr/bin/python3 /usr/bin/python
 
-RUN git clone --depth 1 https://github.com/akhilnarang/scripts \
-     && bash scripts/setup/android_build_env.sh
+RUN git clone --depth 1 https://github.com/CyberJalagam/android_rom_building_scripts scripts \
+     && bash scripts/build.sh
 
 RUN git clone --depth 1 https://github.com/mirror/make $WORKDIR/make \
     && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" \
@@ -79,6 +79,7 @@ RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && rm -rf libwebp-1.2.2.tar.gz \
     && rm -rf rclone-current-linux-amd64.zip \
     && rm -rf zstd-1.5.0.tar.gz \
+    && rm -rf * \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
