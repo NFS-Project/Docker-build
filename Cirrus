@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
