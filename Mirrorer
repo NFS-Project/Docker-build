@@ -1,8 +1,6 @@
 FROM ubuntu:21.10
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
-ENV USERNAME=NOBODY
-ENV PASSWORD=CHANGEME
 WORKDIR /github/mirrorer
 
 RUN apt-get -y update && apt-get -y upgrade && apt-get install curl wget unzip ca-certificates fuse openssh-client gnupg2 aria2 lolcat -y && \
