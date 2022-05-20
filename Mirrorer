@@ -5,7 +5,7 @@ ENV USERNAME=NOBODY
 ENV PASSWORD=CHANGEME
 WORKDIR /github/mirrorer
 
-RUN apt-get -y update && apt-get -y upgrade && apt-get install curl wget unzip ca-certificates fuse openssh-client gnupg2 aria2 -y && \
+RUN apt-get -y update && apt-get -y upgrade && apt-get install curl wget unzip ca-certificates fuse openssh-client gnupg2 aria2 lolcat -y && \
 curl https://mega.nz/linux/MEGAsync/xUbuntu_21.10/amd64/megacmd_1.4.0-2.1_amd64.deb --output megacmd.deb && \
 echo path-include /usr/share/doc/megacmd/* > /etc/dpkg/dpkg.cfg.d/docker && \
 apt install ./megacmd.deb -y && \
