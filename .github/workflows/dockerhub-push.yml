@@ -3,8 +3,6 @@ name: Docker Build
 on:
   push:
     branches: [ docker ]
-  schedule:
-    - cron: '0 0 * * 0,4'
 
 jobs:
 
