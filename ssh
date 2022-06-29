@@ -1,4 +1,4 @@
-FROM ubuntu:21.10
+FROM anggit86:21.10
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
 WORKDIR /root
