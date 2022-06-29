@@ -32,10 +32,10 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./Mirrorer
+          file: ./ssh
           run: echo ${{ secrets.RCLONE }} > ~/.config/rclone/rclone.conf
           push: true
-          tags: anggit86/docker:mirrorer
+          tags: anggit86/docker:ssh
 
 
       - name: Image digest
