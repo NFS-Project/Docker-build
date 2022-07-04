@@ -28,8 +28,6 @@ RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
     then echo "i386"; elif [[ "$cpu" == "aarch64" ]]; then echo "arm64"; else echo $cpu; fi) \
     -o /usr/local/bin/megasdkrest && chmod +x /usr/local/bin/megasdkrest
 
-COPY requirements.txt .
-
 RUN git config --global user.name NFS86 \
     && git config --global user.email jarbull86@gmail.com
 
@@ -52,8 +50,6 @@ RUN rm -rf /var/lib/dpkg/info/*.postinst \
 RUN curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash - \
     && apt update -y \
     && apt install nodejs -y
-
-RUN pip3 install --no-cache-dir -r requirements.txt
 
 WORKDIR /home
 VOLUME ["/home"]
