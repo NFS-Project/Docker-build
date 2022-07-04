@@ -32,10 +32,10 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./ssh
+          file: ./debian
           run: echo ${{ secrets.RCLONE }} > ~/.config/rclone/rclone.conf
           push: true
-          tags: anggit86/docker:ssh
+          tags: anggit86/debian:bookworm
 
 
       - name: Image digest
