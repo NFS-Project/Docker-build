@@ -1,14 +1,30 @@
-FROM ubuntu:21.10
-LABEL maintainer="NFS86 <jarbull86@gmail.com>"
+FROM anasty17/mltb:heroku
 
-WORKDIR /github/mirrorer
+WORKDIR /usr/src
+RUN chmod 777 /usr/src
 
-RUN apt-get -y update && apt-get -y upgrade && apt-get install curl wget unzip ca-certificates fuse openssh-client gnupg2 aria2 lolcat python -y && \
-curl https://mega.nz/linux/MEGAsync/xUbuntu_21.10/amd64/megacmd_1.4.0-2.1_amd64.deb --output megacmd.deb && \
-echo path-include /usr/share/doc/megacmd/* > /etc/dpkg/dpkg.cfg.d/docker && \
-apt install ./megacmd.deb -y && \
-wget -qO- https://rclone.org/install.sh | bash
+RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
+    apt-get install -y python3 python3-pip aria2 qbittorrent-nox \
+    tzdata p7zip-full p7zip-rar xz-utils curl pv jq ffmpeg wget \
+    locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev \
+    libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev \
+    libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev \
+    && locale-gen en_US.UTF-8 && \
+    curl -L https://github.com/anasty17/megasdkrest/releases/download/latest/megasdkrest-$(cpu=$(uname -m);\
+    if [[ "$cpu" == "x86_64" ]]; then echo "amd64"; elif [[ "$cpu" == "x86" ]]; \
+    then echo "i386"; elif [[ "$cpu" == "aarch64" ]]; then echo "arm64"; else echo $cpu; fi) \
+    -o /usr/local/bin/megasdkrest && chmod +x /usr/local/bin/megasdkrest
 
-WORKDIR /github/mirrorer
-VOLUME ["/github/mirrorer"]
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en"
+
+COPY requirements.txt .
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+RUN python3 -m pip  install networkx
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen \
+    && TZ=Asia/Jakarta \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+WORKDIR /usr/src
+VOLUME ["/usr/src"]
 ENTRYPOINT ["/bin/bash"]

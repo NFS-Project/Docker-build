@@ -7,7 +7,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     
@@ -32,11 +32,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./debian
-          run: echo ${{ secrets.RCLONE }} > ~/.config/rclone/rclone.conf
+          file: ./Mirrorer
           push: true
-          tags: anggit86/debian:bookworm
-
+          tags: anggit86/mirrorbot:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
