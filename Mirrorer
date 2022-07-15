@@ -1,6 +1,7 @@
 FROM anasty17/mltb:heroku
 
 WORKDIR /usr/src
+SHELL ["/bin/bash", "-c"]
 RUN chmod 777 /usr/src
 
 RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
