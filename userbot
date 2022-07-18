@@ -1,0 +1,22 @@
+FROM vckyouubitch/geez:master
+
+WORKDIR /home
+RUN chmod 777 /home
+
+RUN apt-get -y update && apt-get -y upgrade
+
+RUN wget https://raw.githubusercontent.com/NFS86/NFS-Userbot/NFS-Userbot/requirements.txt
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+RUN apt-get install tzdata \
+    && apt-mark hold tzdata \
+    && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
+    && echo Asia/Jakarta > /etc/timezone \
+    && echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen \
+    && TZ=Asia/Jakarta \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+WORKDIR /home
+
+ENTRYPOINT ["/bin/bash"]

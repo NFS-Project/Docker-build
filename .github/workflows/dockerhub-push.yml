@@ -32,9 +32,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./Mirrorer
+          file: ./userbot
           push: true
-          tags: anggit86/mirrorbot:latest
+          tags: anggit86/nfsuserbot:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
