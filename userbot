@@ -9,7 +9,7 @@ RUN wget https://raw.githubusercontent.com/NFS86/NFS-Userbot/NFS-Userbot/require
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-RUN apt-get install tzdata screen \
+RUN apt-get install tzdata tmux screen \
     && apt-mark hold tzdata \
     && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
     && echo Asia/Jakarta > /etc/timezone \
