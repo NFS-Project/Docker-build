@@ -1,4 +1,4 @@
-FROM anggit86/nfsuserbot:latest
+FROM anasty17/mltb:heroku
 
 ENV SERVER_PORT = "80"
 ENV PORT = "22"
@@ -6,21 +6,8 @@ WORKDIR /home
 RUN chmod 777 /home
 
 RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get -y install wget
+RUN apt-get -y install wget git
 RUN pip3 install --upgrade pip
-
-RUN rm -rf requirements-cli.txt
-RUN rm -rf requirements.txt
-RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements-cli.txt
-RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements.txt
-RUN pip3 uninstall -r requirements-cli.txt -y
-RUN pip3 uninstall -r requirements.txt -y
-RUN pip3 install -r requirements-cli.txt
-RUN pip3 install -r requirements.txt
-RUN rm -rf requirements-cli.txt
-RUN rm -rf requirements.txt
-RUN pip3 install anytree appdirs aria2p asyncio attrdict beautifulsoup4 cfscrape feedparser flask google-api-python-client google-auth-httplib2 google-auth-oauthlib gunicorn lk21 lxml megasdkrestclient pillow psutil psycopg2-binary pybase64 pyrogram python-dotenv python-magic python-telegram-bot qbittorrent-api requests telegraph tenacity tgCrypto urllib3 yt-dlp
-
 RUN apt-get -y install tzdata \
     && apt-mark hold tzdata \
     && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
@@ -28,6 +15,14 @@ RUN apt-get -y install tzdata \
     && echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen \
     && TZ=Asia/Jakarta \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
+RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements-cli.txt
+RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements.txt
+RUN pip3 install -r requirements-cli.txt
+RUN pip3 install -r requirements.txt
+RUN rm -rf requirements-cli.txt
+RUN rm -rf requirements.txt
 
 WORKDIR /home
 
