@@ -2,11 +2,26 @@ FROM anasty17/mltb:heroku
 
 ENV SERVER_PORT = "80"
 ENV PORT = "22"
+WORKDIR /home
+RUN chmod 777 /home
 
-RUN git clone https://github.com/NFS86/mirror-leech-telegram-bot /usr/src/app \
-    && chmod 777 /usr/src/app \
-    && cd /usr/src/app \
-    && pip3 install --no-cache-dir -r requirements.txt
+RUN apt-get -y update && apt-get -y upgrade
 
-WORKDIR /usr/src/app
+RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements-cli.txt
+RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements.txt
+RUN pip3 install -r requirements-cli.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+RUN rm -rf requirements-cli.txt
+RUN rm -rf requirements.txt
+
+RUN apt-get -y install tzdata \
+    && apt-mark hold tzdata \
+    && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
+    && echo Asia/Jakarta > /etc/timezone \
+    && echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen \
+    && TZ=Asia/Jakarta \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+WORKDIR /home
+
 ENTRYPOINT ["/bin/bash"]
