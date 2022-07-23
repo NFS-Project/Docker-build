@@ -13,6 +13,7 @@ RUN pip3 install -r requirements-cli.txt
 RUN pip3 install -r requirements.txt
 RUN rm -rf requirements-cli.txt
 RUN rm -rf requirements.txt
+RUN pip3 install telegram
 
 RUN apt-get -y install tzdata \
     && apt-mark hold tzdata \
