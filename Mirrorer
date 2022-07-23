@@ -13,8 +13,8 @@ RUN rm -rf requirements-cli.txt
 RUN rm -rf requirements.txt
 RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements-cli.txt
 RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements.txt
-RUN pip3 uninstall -r requirements-cli.txt
-RUN pip3 uninstall -r requirements.txt
+RUN pip3 uninstall -r requirements-cli.txt -y
+RUN pip3 uninstall -r requirements.txt -y
 RUN pip3 install -r requirements-cli.txt
 RUN pip3 install -r requirements.txt
 RUN rm -rf requirements-cli.txt
