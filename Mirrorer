@@ -6,7 +6,7 @@ WORKDIR /home
 RUN chmod 777 /home
 
 RUN apt-get -y update && apt-get -y upgrade
-
+RUN apt-get -y install wget
 RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements-cli.txt
 RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements.txt
 RUN pip3 install -r requirements-cli.txt
