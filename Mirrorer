@@ -25,7 +25,7 @@ RUN apt-get install tzdata \
     && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
     && echo Asia/Jakarta > /etc/timezone
 
-RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt update -y \
     && apt install nodejs -y \
     && apt install npm -y
