@@ -8,6 +8,17 @@ RUN chmod 777 /home
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install wget
 RUN pip3 install --upgrade pip
+
+RUN rm -rf requirements-cli.txt
+RUN rm -rf requirements.txt
+RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements-cli.txt
+RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements.txt
+RUN pip3 uninstall -r requirements-cli.txt
+RUN pip3 uninstall -r requirements.txt
+RUN pip3 install -r requirements-cli.txt
+RUN pip3 install -r requirements.txt
+RUN rm -rf requirements-cli.txt
+RUN rm -rf requirements.txt
 RUN pip3 install anytree appdirs aria2p asyncio attrdict beautifulsoup4 cfscrape feedparser flask google-api-python-client google-auth-httplib2 google-auth-oauthlib gunicorn lk21 lxml megasdkrestclient pillow psutil psycopg2-binary pybase64 pyrogram python-dotenv python-magic python-telegram-bot qbittorrent-api requests telegraph tenacity tgCrypto urllib3 yt-dlp
 
 RUN apt-get -y install tzdata \
