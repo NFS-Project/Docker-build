@@ -1,4 +1,4 @@
-FROM anasty17/mltb:heroku
+FROM vckyouubitch/geez:master
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
 ENV SERVER_PORT = "80"
