@@ -33,9 +33,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./Mirrorer
+          file: ./music
           push: true
-          tags: anggit86/mirrorbot:latest
+          tags: anggit86/musicbot:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
