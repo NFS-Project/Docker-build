@@ -10,12 +10,12 @@ ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
 WORKDIR /home
 RUN chmod 777 /home
 
-RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
+RUN apt-get -y update && apt-get -y upgrade && DEBIAN_FRONTEND="noninteractive" \
     apt-get install -y wget git curl sudo python3 python3-pip aria2 qbittorrent-nox \
     tzdata p7zip-full p7zip* xz-utils curl pv jq ffmpeg \
     locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev \
     libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev \
-    libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev postgresql-client
+    libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev apt-utils postgresql-client
 
 RUN git config --global user.name NFS86 \
     && git config --global user.email jarbull86@gmail.com
@@ -29,9 +29,9 @@ RUN apt-get -y install python3 python3-dev build-essential libssl-dev libffi-dev
 
 RUN pip3 install --upgrade pip
 
-RUN wget https://raw.githubusercontent.com/NFS86/mirror-leech-telegram-bot/action/requirements.txt \
-    && pip3 install -r requirements.txt \
-    && rm -rf requirements.txt
+RUN wget https://raw.githubusercontent.com/NFS86/Docker-build/docker/mirror_requirements.txt \
+    && pip3 install -r mirror_requirements.txt \
+    && rm -rf mirror_requirements.txt
 
 WORKDIR /home
 
