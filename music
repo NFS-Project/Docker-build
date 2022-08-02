@@ -27,9 +27,9 @@ RUN apt-get -y install python3 python3-dev build-essential libssl-dev libffi-dev
 
 RUN pip3 install --upgrade pip
 
-RUN wget https://raw.githubusercontent.com/NFS86/PrimeMusic/main/requirements.txt \
-    && pip3 install -r requirements.txt \
-    && rm -rf requirements.txt
+RUN wget https://raw.githubusercontent.com/NFS86/Docker-build/docker/music_requirements.txt \
+    && pip3 install -r music_requirements.txt \
+    && rm -rf music_requirements.txt
 
 WORKDIR /home
 

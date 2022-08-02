@@ -1,21 +1,37 @@
 FROM vckyouubitch/geez:master
+LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
+ENV SERVER_PORT = "80"
+ENV PORT = "22"
+ENV DEBIAN_FRONTEND noninteractive
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en"
+ENV LC_ALL=C
+ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
 WORKDIR /home
 RUN chmod 777 /home
 
-RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y update && apt-get -y upgrade && DEBIAN_FRONTEND="noninteractive" \
+    apt-get install -y wget git curl sudo python3 python3-pip aria2 qbittorrent-nox \
+    tzdata p7zip-full p7zip* xz-utils curl pv jq ffmpeg \
+    locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev \
+    libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev \
+    libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev apt-utils postgresql-client
 
-RUN wget https://raw.githubusercontent.com/NFS86/NFS-Userbot/NFS-Userbot/requirements.txt
+RUN git config --global user.name NFS86 \
+    && git config --global user.email jarbull86@gmail.com
 
-RUN pip3 install --no-cache-dir -r requirements.txt
-
-RUN apt-get -y install tzdata tmux screen apt-utils postgresql-client \
+RUN apt-get install tzdata \
     && apt-mark hold tzdata \
     && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
-    && echo Asia/Jakarta > /etc/timezone \
-    && echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen \
-    && TZ=Asia/Jakarta \
-    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+    && echo Asia/Jakarta > /etc/timezone
+
+RUN apt-get -y install python3 python3-dev build-essential libssl-dev libffi-dev libxml2-dev libxslt1-dev zlib1g-dev python3-pip
+
+RUN pip3 install --upgrade pip
+
+RUN wget https://raw.githubusercontent.com/NFS86/Docker-build/docker/userbot_requirements.txt \
+    && pip3 install -r userbot_requirements.txt \
+    && rm -rf userbot_requirements.txt
 
 WORKDIR /home
 
