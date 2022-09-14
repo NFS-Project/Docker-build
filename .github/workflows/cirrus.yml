@@ -1,4 +1,4 @@
-name: Docker Build
+name: Cirrus docker
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-
+    environment: Actions
     steps:
     
       - name: Check Out Repo 
