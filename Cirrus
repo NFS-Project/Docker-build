@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -25,6 +25,8 @@ RUN apt-get -yqq update \
     && echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen \
     && TZ=Asia/Kolkata \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN ssh-keygen -q -t rsa -N '' -f /id_rsa
 
 RUN git config --global user.name NFS86 \
     && git config --global user.email jarbull86@gmail.com
