@@ -37,8 +37,8 @@ RUN python3 -m pip  install networkx \
 
 RUN sudo git clone https://github.com/akhilnarang/scripts .sc ;  bash .sc/setup/android_build_env.sh
 
-RUN git clone --depth 1 https://github.com/mirror/make $WORKDIR/make \
-    && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" \
+RUN git clone --depth 1 https://github.com/mirror/make .make \
+    && cd .make && ./bootstrap && ./configure && make CFLAGS="-O3" \
     && sudo install ./make /usr/bin/make
 
 RUN wget https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.2.2.tar.gz \
@@ -49,12 +49,12 @@ RUN wget https://storage.googleapis.com/downloads.webmproject.org/releases/webp/
     && ./configure \
     && make -j$(nproc --all)
 
-RUN git clone --depth 1 https://github.com/ninja-build/ninja.git $WORKDIR/ninja \
-    && cd $WORKDIR/ninja && ./configure.py --bootstrap \
+RUN git clone --depth 1 https://github.com/ninja-build/ninja.git .ninja \
+    && cd .ninja && ./configure.py --bootstrap \
     && sudo install ./ninja /usr/bin/ninja
 
-RUN git clone --depth 1 https://github.com/google/kati.git $WORKDIR/kati \
-    && cd $WORKDIR/kati && make ckati \
+RUN git clone --depth 1 https://github.com/google/kati.git .kati \
+    && cd .kati && make ckati \
     && sudo install ./ckati /usr/bin/ckati
 
 RUN axel -a -n 10 https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz \
@@ -66,8 +66,8 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip \
     && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone \
     && sudo chmod 755 /usr/bin/rclone
 
-RUN git clone --depth 1 https://github.com/TheLartians/Ccache.cmake $WORKDIR/Ccache.cmake \
-    && cd $WORKDIR/Ccache.cmake \
+RUN git clone --depth 1 https://github.com/TheLartians/Ccache.cmake .Ccache.cmake \
+    && cd .Ccache.cmake \
     && cmake -Htest -Bbuild -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" \
     && cmake --build build \
     && cmake -Htest -Bbuildx -GNinja -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" \
