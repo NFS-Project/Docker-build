@@ -35,8 +35,7 @@ RUN apt-get install tzdata \
 RUN python3 -m pip  install networkx \
     && ln -sf /usr/bin/python3 /usr/bin/python
 
-RUN git clone --depth 1 https://github.com/CyberJalagam/android_rom_building_scripts scripts \
-     && bash scripts/build.sh
+RUN sudo git clone https://github.com/akhilnarang/scripts .sc ;  bash .sc/setup/android_build_env.sh
 
 RUN git clone --depth 1 https://github.com/mirror/make $WORKDIR/make \
     && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" \
