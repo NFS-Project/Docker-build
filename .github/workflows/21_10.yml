@@ -1,4 +1,4 @@
-name: Ubuntu 21.10 docker
+name: Ubuntu 22.04 docker
 
 on:
   push:
@@ -33,9 +33,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./21.10
+          file: ./22.04
           push: true
-          tags: anggit86/ubuntu:21.10
+          tags: anggit86/ubuntu:22.04
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
