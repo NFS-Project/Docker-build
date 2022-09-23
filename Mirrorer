@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM breakdowns/mega-sdk-python:latest
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
 ENV SERVER_PORT = "80"
