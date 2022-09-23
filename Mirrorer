@@ -1,4 +1,4 @@
-FROM vckyouubitch/geez:master
+FROM anasty17/mltb:latest
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
 ENV SERVER_PORT = "80"
