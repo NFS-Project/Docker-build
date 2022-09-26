@@ -31,6 +31,7 @@ python-magic
 python-telegram-bot
 pycryptodomex
 qbittorrent-api
+qbittorrent-nox
 requests
 telegraph
 tenacity
