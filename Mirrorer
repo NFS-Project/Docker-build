@@ -10,8 +10,8 @@ ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
 WORKDIR /home
 RUN chmod 777 /home
 
-RUN sudo apt-get -y install software-properties-common\
-    sudo add-apt-repository ppa:jonathonf/ffmpeg-4
+RUN apt-get -y install software-properties-common\
+    add-apt-repository ppa:jonathonf/ffmpeg-4
 
 RUN apt-get -y update && apt-get -y upgrade && DEBIAN_FRONTEND="noninteractive" \
     apt-get install -y wget git curl sudo python3 python3-pip aria2 qbittorrent-nox tzdata p7zip-full p7zip* xz-utils curl pv jq ffmpeg locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev apt-utils postgresql-client
