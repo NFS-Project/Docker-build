@@ -4,6 +4,7 @@ aria2p
 asyncio
 attrdict
 beautifulsoup4
+bencoding
 brotli; platform_python_implementation=='CPython'
 brotlicffi; platform_python_implementation!='CPython'
 certifi
