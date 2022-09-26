@@ -11,7 +11,7 @@ WORKDIR /home
 RUN chmod 777 /home
 
 RUN apt-get -y update && apt-get -y upgrade && DEBIAN_FRONTEND="noninteractive" \
-    apt-get install -y software-properties-common wget git curl sudo python3 python3-pip aria2 qbittorrent-nox tzdata p7zip-full p7zip* xz-utils curl pv jq ffmpeg locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev apt-utils postgresql-client
+    apt-get install -y software-properties-common android-sdk wget git curl sudo python3 python3-pip aria2 qbittorrent-nox tzdata p7zip-full p7zip* xz-utils curl pv jq ffmpeg locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev apt-utils postgresql-client
 
 RUN git config --global user.name NFS86 \
     && git config --global user.email jarbull86@gmail.com
