@@ -4,6 +4,9 @@ aria2p
 asyncio
 attrdict
 beautifulsoup4
+brotli; platform_python_implementation=='CPython'
+brotlicffi; platform_python_implementation!='CPython'
+certifi
 cfscrape
 feedparser
 flask
@@ -14,6 +17,7 @@ gunicorn
 lk21
 lxml
 megasdkrestclient
+mutagen
 pillow
 psutil
 psycopg2-binary
@@ -22,10 +26,12 @@ pyrogram
 python-dotenv
 python-magic
 python-telegram-bot
+pycryptodomex
 qbittorrent-api
 requests
 telegraph
 tenacity
 tgCrypto
 urllib3
+websockets
 yt-dlp
