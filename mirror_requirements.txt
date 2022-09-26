@@ -18,11 +18,14 @@ lk21
 lxml
 megasdkrestclient
 mutagen
+oauth2client
 pillow
+progress
+progressbar2
 psutil
 psycopg2-binary
 pybase64
-pyrogram
+pyrogram>=2
 python-dotenv
 python-magic
 python-telegram-bot
