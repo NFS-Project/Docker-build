@@ -26,6 +26,7 @@ progressbar2
 psutil
 psycopg2-binary
 pybase64
+pymongo
 pyrogram>=2
 python-dotenv
 python-magic
