@@ -7,9 +7,9 @@ ENV LC_ALL=C
 ENV USE_CCACHE=1
 ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
 ENV JAVA_OPTS=" -Xmx120G "
-ENV USER=rosy
+ENV BUILD_USERNAME=cirrus
 ENV CCACHE_EXEC=/usr/bin/ccache
-ENV HOSTNAME=builder
+ENV BUILD_HOSTNAME=nfsproject
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 WORKDIR /tmp
 
@@ -78,6 +78,8 @@ RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && rm -rf zstd-1.5.0.tar.gz \
     && rm -rf * \
     && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get -y update && apt-get -y upgrade
 
 WORKDIR /tmp
 VOLUME ["/tmp/rom", "/tmp/ccache"]
