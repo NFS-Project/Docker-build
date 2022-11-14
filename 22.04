@@ -33,13 +33,11 @@ RUN apt-get install tzdata \
 RUN python3 -m pip  install networkx \
     && ln -sf /usr/bin/python3 /usr/bin/python
 
-RUN sudo fallocate -l 32G /swapfile \
-    && sudo dd if=/dev/zero of=/swapfile bs=1024 count=33554432 \
+RUN sudo fallocate -l 12G /swapfile \
+    && sudo dd if=/dev/zero of=/swapfile bs=1024 count=12582912 \
     && sudo chmod 600 /swapfile \
     && sudo mkswap /swapfile \
-    && sudo swapon /swapfile \
-    && sudo swapon --show \
-    && sudo free -h
+    && sudo swapon /swapfile
 
 RUN sudo git clone https://github.com/akhilnarang/scripts .sc ;  bash .sc/setup/android_build_env.sh
 
