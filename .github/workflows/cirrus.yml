@@ -1,7 +1,6 @@
 name: Cirrus docker
 
 on:
-  push:
   workflow_dispatch:
     branches: [ docker ]
 

@@ -11,6 +11,8 @@ ENV BUILD_USERNAME=cirrus
 ENV CCACHE_EXEC=/usr/bin/ccache
 ENV BUILD_HOSTNAME=nfsproject
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV USER=cirrus
+ENV HOSTNAME=nfs-project
 WORKDIR /tmp
 
 RUN apt-get -yqq update \
@@ -71,15 +73,19 @@ RUN git clone --depth 1 https://github.com/TheLartians/Ccache.cmake .Ccache.cmak
     && cmake -Htest -Bbuildx -GNinja -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" \
     && cmake --build buildx
 
+RUN set -x \
+    && curl -LO https://github.com/cli/cli/releases/download/v2.20.2/gh_2.20.2_linux_amd64.deb \
+    && dpkg -i gh* \
+    && rm gh*
+
 RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && dpkg --configure -a \
     && rm -rf libwebp-1.2.2.tar.gz \
     && rm -rf rclone-current-linux-amd64.zip \
     && rm -rf zstd-1.5.0.tar.gz \
     && rm -rf * \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get -y update && apt-get -y upgrade
+    && rm -rf /var/lib/apt/lists/* \
+    && repo init
 
 WORKDIR /tmp
 VOLUME ["/tmp/rom", "/tmp/ccache"]
