@@ -15,14 +15,6 @@ jobs:
       - name: Check Out Repo 
         uses: actions/checkout@v2
 
-      - name: Cleanup..
-        uses: rokibhasansagar/slimhub_actions@main
-
-      - name: Set Swap Space..
-        uses: pierotofy/set-swap-space@master
-        with:
-          swap-size-gb: 12
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
