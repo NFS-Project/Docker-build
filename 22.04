@@ -92,6 +92,7 @@ RUN rm -rf /var/lib/dpkg/info/*.postinst \
     && rm -rf * \
     && rm -rf /var/lib/apt/lists/*
 
+COPY entrypoint.sh /entrypoint.sh
 WORKDIR /tmp
 VOLUME ["/tmp/rom", "/tmp/ccache"]
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/entrypoint.sh"]
