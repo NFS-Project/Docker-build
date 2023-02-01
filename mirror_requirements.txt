@@ -9,13 +9,14 @@ brotli; platform_python_implementation=='CPython'
 brotlicffi; platform_python_implementation!='CPython'
 certifi
 cfscrape
+dnspython
 feedparser
 flask
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
 gunicorn
-lk21
+git+https://github.com/zevtyardt/lk21.git
 lxml
 megasdkrestclient
 mutagen
@@ -27,10 +28,10 @@ psutil
 psycopg2-binary
 pybase64
 pymongo
-pyrogram>=2
+pyrogram==2.0.66
 python-dotenv
 python-magic
-python-telegram-bot
+python-telegram-bot==13.15
 pycryptodomex
 qbittorrent-api
 requests
@@ -39,4 +40,5 @@ tenacity
 tgCrypto
 urllib3
 websockets
+xattr
 yt-dlp
