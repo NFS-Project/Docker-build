@@ -12,7 +12,7 @@ RUN chmod 777 /home
 
 RUN apt-get -y update && apt-get -y upgrade && DEBIAN_FRONTEND="noninteractive" \
     && apt-get -y install apt-utils \
-    && apt-get -y install wget git curl sudo sshpass python3 python3-pip aria2 qbittorrent-nox \
+    && apt-get -y install wget git curl sudo openssh-server openssh-client sshpass python3 python3-pip aria2 qbittorrent-nox \
     tzdata p7zip-full p7zip* xz-utils curl pv jq ffmpeg \
     locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev \
     libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev \
