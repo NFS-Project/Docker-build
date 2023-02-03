@@ -9,8 +9,6 @@ echo path-include /usr/share/doc/megacmd/* > /etc/dpkg/dpkg.cfg.d/docker && \
 apt install ./megacmd.deb -y && \
 wget -qO- https://rclone.org/install.sh | bash
 
-ADD ./rsyncd.conf /root/
-
 WORKDIR /github/mirrorer
 VOLUME ["/github/mirrorer"]
 ENTRYPOINT ["/bin/bash"]
