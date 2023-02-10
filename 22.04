@@ -36,6 +36,16 @@ RUN apt-get -yqq update \
     && TZ=Asia/Kolkata \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN \
+sudo apt install \
+    curl wget aria2 tmate python2 python3 silversearch* \
+    iputils-ping iproute2 \
+    nano rsync rclone tmux screen openssh-server \
+    python3-pip adb fastboot jq npm neofetch mlocate \
+    zip unzip tar ccache \
+    cpio lzma \
+    -y
+
 RUN git config --global user.name NFS86 \
     && git config --global user.email jarbull86@gmail.com \
     && git config --global color.ui auto
