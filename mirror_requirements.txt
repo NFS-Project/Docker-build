@@ -1,5 +1,9 @@
+aiohttp
+aiofiles
+aioshutil
 anytree
 appdirs
+apscheduler
 aria2p
 asyncio
 attrdict
@@ -17,9 +21,12 @@ google-auth-httplib2
 google-auth-oauthlib
 gunicorn
 git+https://github.com/zevtyardt/lk21.git
+httpx
 lxml
 megasdkrestclient
+motor
 mutagen
+natsort
 oauth2client
 pillow
 progress
@@ -28,7 +35,7 @@ psutil
 psycopg2-binary
 pybase64
 pymongo
-pyrogram==2.0.66
+pyrogram
 python-dotenv
 python-magic
 python-telegram-bot==13.15
@@ -37,8 +44,9 @@ qbittorrent-api
 requests
 telegraph
 tenacity
-tgCrypto
+tgcrypto
 urllib3
+uvloop
 websockets
 xattr
 yt-dlp
