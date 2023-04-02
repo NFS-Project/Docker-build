@@ -28,4 +28,4 @@ RUN apt update
 RUN apt install apt-utils sudo -y
 
 RUN apt-get -yqq update \
-    && apt-get install --no-install-recommends -yqq git nano wget curl python --fix-broken --fix-missing
+    && apt-get install --no-install-recommends -yqq git nano wget curl python bc bison build-essential g++ gcc clang llvm ccache --fix-broken --fix-missing
