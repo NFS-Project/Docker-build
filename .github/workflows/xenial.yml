@@ -1,4 +1,4 @@
-name: Ubuntu 18.04 docker
+name: Ubuntu xenial docker
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
           context: ./
           file: ./xenial
           push: true
-          tags: anggit86/ubuntu:18.04
+          tags: anggit86/ubuntu:xenial
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
