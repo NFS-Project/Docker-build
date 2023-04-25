@@ -1,11 +1,12 @@
 FROM anasty17/mltb:latest
 LABEL maintainer="NFS86 <jarbull86@gmail.com>"
 
-ENV SERVER_PORT = "80"
-ENV PORT = "22"
-ENV DEBIAN_FRONTEND noninteractive
-ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en"
-ENV LC_ALL=C
+ENV SERVER_PORT="80"
+ENV PORT="22"
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV LANG="en_US.UTF-8"
+ENV LANGUAGE="en_US:en"
+ENV LC_ALL="C"
 ENV ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx120G"
 WORKDIR /home
 RUN chmod 777 /home
@@ -26,11 +27,6 @@ RUN apt-get install tzdata \
 RUN apt-get -y install pipenv python3 python3-dev build-essential libssl-dev libffi-dev libxml2-dev libxslt1-dev zlib1g-dev python3-pip
 
 RUN pip3 install --upgrade pip
-
-RUN curl https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/megacmd_1.5.1-1.1_amd64.deb --output megacmd.deb \
-    && echo path-include /usr/share/doc/megacmd/* > /etc/dpkg/dpkg.cfg.d/docker \
-    && apt install ./megacmd.deb -y \
-    && rm -rf megacmd.deb
 
 RUN wget https://raw.githubusercontent.com/NFS-Project/Docker-build/docker/mirror_requirements.txt \
     && pip3 install -r mirror_requirements.txt \
