@@ -29,12 +29,20 @@ RUN pip3 install --upgrade pip
 
 RUN curl https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/megacmd_1.5.1-1.1_amd64.deb --output megacmd.deb \
     && echo path-include /usr/share/doc/megacmd/* > /etc/dpkg/dpkg.cfg.d/docker \
-    && apt install ./megacmd.deb -y
+    && apt install ./megacmd.deb -y \
+    && rm -rf megacmd.deb
 
 RUN wget https://raw.githubusercontent.com/NFS-Project/Docker-build/docker/mirror_requirements.txt \
     && pip3 install -r mirror_requirements.txt \
     && rm -rf mirror_requirements.txt
 
-WORKDIR /home
+RUN wget https://raw.githubusercontent.com/anasty17/mirror-leech-telegram-bot/master/requirements-cli.txt \
+    && pip3 install -r requirements-cli.txt \
+    && rm -rf requirements-cli.txt
 
+RUN wget https://raw.githubusercontent.com/anasty17/mirror-leech-telegram-bot/master/requirements.txt \
+    && pip3 install -r requirements.txt \
+    && rm -rf requirements.txt
+
+WORKDIR /home
 ENTRYPOINT ["/bin/bash"]

@@ -1,6 +1,7 @@
 name: Docker Mirrorer Bot
 
 on:
+  push:
   workflow_dispatch:
     branches: [ docker ]
 

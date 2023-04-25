@@ -1,7 +1,6 @@
 name: Ubuntu xenial docker
 
 on:
-  push:
   workflow_dispatch:
     branches: [ docker ]
 
